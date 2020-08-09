@@ -51,6 +51,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void done(ParseUser user, ParseException e) {
                         if (user != null && e == null) {
                             FancyToast.makeText(LoginActivity.this, "Login success", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                            Intent intent = new Intent(LoginActivity.this, TwitterUsers.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             FancyToast.makeText(LoginActivity.this, "Login failed\n" + e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         }

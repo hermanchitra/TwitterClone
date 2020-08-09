@@ -27,6 +27,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         setTitle("Sign Up");
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
+        if (ParseUser.getCurrentUser() != null) {
+            Intent intent = new Intent(SignupActivity.this, TwitterUsers.class);
+            startActivity(intent);
+            finish();
+        }
 
         edtSignupEmail = findViewById(R.id.edtSignupEmail);
         edtSignupUsername = findViewById(R.id.edtSignupUsername);
@@ -36,6 +41,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignupLogin.setOnClickListener(this);
         btnSignupSignup.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -58,6 +65,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     public void done(ParseException e) {
                         if (e == null){
                             FancyToast.makeText(SignupActivity.this, "Sign up success", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                            Intent intent = new Intent(SignupActivity.this, TwitterUsers.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             FancyToast.makeText(SignupActivity.this, "Sign up failed\n" + e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         }
